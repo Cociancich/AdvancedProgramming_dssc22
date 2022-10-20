@@ -1,24 +1,7 @@
- 
-#include <iostream>
+#include "coeffs.hpp"
+#include "eq.hpp"
 #include <cmath>
-
-
-struct myComplex{
-    double r;
-    double im;
-};
-
-class CQuadratic_Equation{
-public:
-   CCoeffs coeffs;    
-   myComplex sol1;
-   myComplex sol2;
-   CQuadratic_Equation(){
-     sol1.r=0;sol2.r=0;sol1.im=0;sol2.im=0;    
-   };
-   void solve();
-   void print_solution();
-};
+#include <iostream>
 
 void CQuadratic_Equation::solve() {
     double discr = coeffs.b*coeffs.b - 4*coeffs.a*coeffs.c;
@@ -44,4 +27,4 @@ void CQuadratic_Equation::print_solution() {
     std::cout<<"solutions are: "<<sol1.r << " + i*" <<sol1.im<<std::endl;
     std::cout<<sol2.r << " + i*" <<sol2.im<<std::endl;
 }
-
+ 

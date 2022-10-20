@@ -1,8 +1,7 @@
- 
 #include <iostream>
-#include <cmath>
 
-
+#include "coeffs.hpp"
+#include "eq.hpp"
 
 
 int main(){
@@ -16,3 +15,4 @@ int main(){
 
     return 0;
 }    
+
