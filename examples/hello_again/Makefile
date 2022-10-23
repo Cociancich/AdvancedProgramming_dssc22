@@ -10,9 +10,9 @@ CFLAGS= -c -I$(INCDIR)
 hello.x: main.o hello.o
 	$(CC) main.o hello.o -o hello.x
 main.o: main.cpp
-	$(CC) $(CFLAGS) main.c
-src/hello.o: src/hello.c
-	$(CC) $(CFLAGS) hello.c
+	$(CC) $(CFLAGS) main.cpp
+hello.o: src/hello.cpp
+	$(CC) $(CFLAGS) src/hello.cpp
 clean:
 	rm -rf *.o *.x 
 	

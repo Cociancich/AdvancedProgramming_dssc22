@@ -69,5 +69,6 @@ int main(){
   }
   auto var4= var+2;
   var4=2+var;
+  var4.print();
   return 0;  
 }
