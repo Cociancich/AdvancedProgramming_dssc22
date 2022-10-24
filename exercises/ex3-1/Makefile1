@@ -7,12 +7,12 @@ INCDIR=include
 # CFLAGS will be the options passed to the compiler.
 CFLAGS= -c -I$(INCDIR)
 
-hello.x: main.o hello.o
-	$(CC) main.o hello.o -o hello.x
+hello.x: main.o CQuadratic_Equation.o CCoeffs.o
+	$(CC) main.o CQuadratic_Equation.o CCoeffs.o -o CQuadratic_Equation.x
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp
 hello.o: src/hello.cpp
-	$(CC) $(CFLAGS) src/hello.cpp
+	$(CC) $(CFLAGS) src/CQuadratic_Equation.cpp src/CCoeffs.cpp
 clean:
 	rm -rf *.o *.x 
 	
