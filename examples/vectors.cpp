@@ -66,7 +66,7 @@ int main(){
     vec.resize(5);
     print_whatever(arr);
     print_whatever(vec);
-       
+
     vec.push_back(8);//avoid if you can in hpc!
     vec.reserve(100000);//now you can do push_backs, but still better not
     

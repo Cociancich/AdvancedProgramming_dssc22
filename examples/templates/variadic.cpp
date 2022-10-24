@@ -3,7 +3,7 @@
 
 template <typename T>
 void myPrint(const T& arg){
-     std::cout<<arg<<" ";
+     std::cout<<arg<<" "<<std::endl;
 }
 
 
