@@ -2,17 +2,19 @@
 #include <cmath>
 #include "CCoeffs.hpp"
 
-
+/*
 template<typename T>
 CCoeffs<T>::CCoeffs ( const T& a1, const T& b1, const T& c1 ) {
     a=a1;
     b=b1;
     c=c1;
 }
+*/
 template<typename T>
 void CCoeffs<T>::ask_for_input() {
     std::cout<<"Please enter the ax^2+bx+c=0 equation's coefficients"<<std::endl;
-    std::cin >> a >> b >> c;
+    CCoeffs<double> var;
+    std::cin >> var.a >> var.b >> var.c;
     
     if(a==0){
         std::cout<<"This is not a quadratic equation, a=0, I refuse to solve this. Try again.";

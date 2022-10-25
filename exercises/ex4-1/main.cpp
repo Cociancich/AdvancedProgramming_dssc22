@@ -8,7 +8,7 @@ int main() {
     CQuadratic_Equation eq;
     eq.read();
     //eq.coeffs.ask_for_input();
-    eq.coeffs.print();
+    //eq.coeffs.print();
     eq.solve();
     eq.print_solution();
     eq.write();

@@ -6,7 +6,7 @@ struct myComplex {
 
 class CQuadratic_Equation {
 public:
-    CCoeffs coeffs;
+    CCoeffs<double> coeffs;
     myComplex sol1;
     myComplex sol2;
     CQuadratic_Equation() {
