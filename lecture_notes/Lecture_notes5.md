@@ -1,5 +1,8 @@
  *The notes do not consitute a full reference book, please attend lectures, watch videos or read something else to fully understand the material. They are nothing more than "notes".*
 
+provare ad usare valgrind per la memoria usata dal programma
+
+
 ### Memory management
 
 #### C-like style memory management 
