@@ -11,10 +11,20 @@ public:
     CComplex operator*(const CComplex& var);
     CComplex operator-(const CComplex& var);
     CComplex operator/(const CComplex& var);//lecturer is lazy to type this one
-    friend std::ostream& operator<<(std::ostream& os, const CComplex& c);
+    friend std::ostream& operator<<(std::ostream& os, const CComplex& c){
+	if(c.y>0){
+		os<<c.x<<" + i*"<<c.y;
+	    }else if (c.y<0){
+		os<<c.x<<" - i*"<<-c.y;
+	    }else{
+		os<<c.x;
+	    }
+	    return os;
+
+	}
     
 };
-
+/*
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const CComplex<T>& c){
     if(c.y>0){
@@ -26,7 +36,7 @@ std::ostream& operator<<(std::ostream& os, const CComplex<T>& c){
     }
     return os;
 };
-
+*/
 template <typename T>
 CComplex<T> CComplex<T>::operator+ ( const CComplex<T>& var ) {
     CComplex result(0,0);
