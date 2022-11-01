@@ -8,7 +8,7 @@ CFLAGS= -c -I$(INCDIR)
 OBJECTS= main.o
 #$(OBJDIR)/CCoeffs.o $(OBJDIR)/CQuadratic_Equation.o 
 
-CQuadratic_Equation.x: $(OBJECTS)
+complex.x: $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp

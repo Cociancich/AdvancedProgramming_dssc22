@@ -47,9 +47,9 @@ void CQuadratic_Equation::read() {
 
 void CQuadratic_Equation::write() {
 	std::cout<<"Soluzioni: "<<coeffs.a<< " " <<coeffs.b <<" "<< coeffs.c<<std::endl;
-    std::ofstream filevar("output_file.txt", std::ios_base::app);
-    //filevar.open("output_file.txt", std::ios_base::app);
-    filevar <<coeffs.a<< " " <<coeffs.b <<" "<< coeffs.c<<std::endl;
+    std::ofstream filevar("solution_history.txt", std::ios_base::app);
+    
+    filevar << "("<<coeffs.a << ")x^2+(" << coeffs.b << ")x+(" << coeffs.c << "): " << sol1.r << " + i*" << sol1.im << std::endl;
     filevar.close();
 }
 
