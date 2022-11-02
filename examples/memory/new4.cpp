@@ -21,15 +21,16 @@ template<typename T>
     for(int i=0;i<N;i++){
         data[i]=i;
     }
-    std::cout<<"constructor called"<<std::endl;
+    std::cout<<"constructor called "<<data<<std::endl;
 }
 
 
 template<typename T> 
     CMyClass<T>::~CMyClass() {
+    std::cout << "destructor called " << data << std::endl;    
     delete[] data;
     data=nullptr;
-    std::cout<<"destructor called"<<std::endl;
+    //std::cout<<"destructor called "<< data<<std::endl;
 }
 
 
@@ -70,7 +71,7 @@ return *this;
 
 template<typename T> 
 CMyClass<T>::CMyClass ( const CMyClass<T>& p ) {
-    std::cout<<"copy constructor called"<<std::endl;
+    std::cout<<"copy constructor called"<<data << " - " << p.data << std::endl;
 //first check for self-assignment
 if (this != &p) { 
 //copy non-dynamic variables

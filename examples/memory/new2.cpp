@@ -8,7 +8,7 @@ public:
     CMyClass(const int& N);
     ~CMyClass();
     void print();
-  //  CMyClass& operator=(const CMyClass& p);
+    CMyClass& operator=(const CMyClass& p);
     
 };
 
@@ -38,7 +38,7 @@ void CMyClass<T>::print() {
     }
     std::cout<<std::endl;   
 }
-/*
+
 template <typename T>
 CMyClass<T>& CMyClass<T>::operator=(const CMyClass<T>& p){
     std::cout<<"assignment operator called"<<std::endl;
@@ -63,7 +63,7 @@ if (this != &p) {
 }//of cheking for self-assignement
 return *this;
 };
-*/
+
 
 int main(){
    

@@ -3,7 +3,11 @@
 
 
 void function(int* p){
-    std::cout<<p<<std::endl;
+    std::cout << "function called:" << std::endl;
+    for (int i = 0; i < 5; i++) {
+        p[i] = i;
+        std::cout << p[i] << " ";
+    }
 }
 
 int main(){
@@ -13,6 +17,7 @@ int main(){
         p[i]=i;
         std::cout<<p[i]<<" ";
     }
+    std::cout<< std::endl;
     //how to pass to a C-style function
     function(p.get());
     

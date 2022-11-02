@@ -90,6 +90,20 @@ if (this != &p) {
 return *this;
 };
 
+template<typename T>
+CMyClass<T>::CMyClass(CMyClass<T>&& p) {
+    std::cout << "move constructor called" << std::endl;
+    //first check for self-assignment
+    if (this != &p) {
+        //copy non-dynamic variables
+        size = p.size;
+        p.size = 0;
+        //create and copy dynamic variables
+        data = p.data;
+        p.data = nullptr;
+    }//of checking for self-assignment
+
+}
 
 template<typename T> 
 CMyClass<T>::CMyClass ( const CMyClass<T>& p ) {
@@ -111,20 +125,7 @@ if (this != &p) {
     
 }//copy constructor
 
-template<typename T> 
-CMyClass<T>::CMyClass ( CMyClass<T> && p ) {
-     std::cout<<"move constructor called"<<std::endl;
-//first check for self-assignment
-if (this != &p) { 
-//copy non-dynamic variables
-	size=p.size;
-    p.size=0;
-//create and copy dynamic variables
-    data=p.data;
-    p.data=nullptr;
-}//of checking for self-assignment
-    
-}
+
 
 
 
@@ -162,8 +163,9 @@ int main(){
   //  CMyClass<int> obj4(obj3);
     
     //obj3 still exists, but assume it can't be used anymore 
+    std::cout << "auto obj5=std::move(obj3)" << std::endl;
     auto obj5=std::move(obj3); 
-    
+    std::cout << "obj5=std::move(obj2)" << std::endl;
     obj5=std::move(obj2);
     
     return 0;

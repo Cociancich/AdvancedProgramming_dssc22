@@ -21,15 +21,16 @@ template<typename T>
     for(int i=0;i<N;i++){
         data[i]=i;
     }
-    std::cout<<"constructor called"<<std::endl;
+    std::cout<<"constructor called: "<<data << std::endl;
 }
 
 
 template<typename T> 
     CMyClass<T>::~CMyClass() {
+        std::cout << "destructor called: "<<data << std::endl;
     delete[] data;
     data=nullptr;
-    std::cout<<"destructor called"<<std::endl;
+    //std::cout<<"destructor called: "<<std::endl;
 }
 
 
