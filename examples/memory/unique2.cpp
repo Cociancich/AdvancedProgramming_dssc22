@@ -6,14 +6,13 @@ class CMyClass{
 public:
     std::unique_ptr<T[]> data;
     size_t size;
-    CMyClass(const int& N);
-    void print();
+    CMyClass(const int& N);   
     CMyClass& operator=(const CMyClass& p);
-    CMyClass& operator=(CMyClass&& p);
-    CMyClass operator+(const CMyClass& p);
+    CMyClass& operator=(CMyClass&& p);    
     CMyClass(const CMyClass& p);
     CMyClass(CMyClass&& p);
-    
+    CMyClass operator+(const CMyClass& p);
+    void print();
 };
 
 template<typename T> 
@@ -25,16 +24,6 @@ template<typename T>
         data[i]=i;
     }
     std::cout<<"constructor called"<<std::endl;
-}
-
-
-
-template<typename T> 
-void CMyClass<T>::print() {
-     for(int i=0;i<size;i++){
-        std::cout<<data[i]<<" ";
-    }
-    std::cout<<std::endl;   
 }
 
 
@@ -100,7 +89,6 @@ if (this != &p) {
 }
 
 
-
 //nonsense function to see what happens 
 template <typename T>
 void a_function(CMyClass<T> obj){
@@ -119,6 +107,14 @@ CMyClass<T> CMyClass<T>::operator+ ( const CMyClass<T>& p ) {
         result.data[i]=data[i]+p.data[i];
     }    
     return result;
+}
+
+template<typename T>
+void CMyClass<T>::print() {
+    for (int i = 0; i < size; i++) {
+        std::cout << data[i] << " ";
+    }
+    std::cout << std::endl;
 }
 
 

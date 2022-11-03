@@ -5,16 +5,16 @@ class CMyClass{
 public:
     T* data;
     size_t size;
-    CMyClass(const int& N);
-    ~CMyClass();
-    void print();
-    CMyClass& operator=(const CMyClass& p);
-    CMyClass& operator=(CMyClass&& p);
+    CMyClass(const int& N); //constructor
+    ~CMyClass();    //destructor
+    CMyClass& operator=(const CMyClass& p); //assignment operator
+    CMyClass& operator=(CMyClass&& p);    //move assignment
+    CMyClass(const CMyClass& p); //copy constructor
+    CMyClass(CMyClass&& p); //move constructor
     CMyClass operator+(const CMyClass& p);
-    CMyClass(const CMyClass& p);
-    CMyClass(CMyClass&& p);
-    
+    void print();
 };
+
 
 template<typename T> 
     CMyClass<T>::CMyClass(const int& N) {
@@ -26,23 +26,12 @@ template<typename T>
     std::cout<<"constructor called"<<std::endl;
 }
 
-
 template<typename T> 
     CMyClass<T>::~CMyClass() {
     delete[] data;
     data=nullptr;
     std::cout<<"destructor called"<<std::endl;
 }
-
-
-template<typename T> 
-void CMyClass<T>::print() {
-     for(int i=0;i<size;i++){
-        std::cout<<data[i]<<" ";
-    }
-    std::cout<<std::endl;   
-}
-
 
 template <typename T>
 CMyClass<T>& CMyClass<T>::operator=(const CMyClass<T>& p){
@@ -91,6 +80,26 @@ return *this;
 };
 
 template<typename T>
+CMyClass<T>::CMyClass(const CMyClass<T>& p) {
+    std::cout << "copy constructor called" << std::endl;
+    //first check for self-assignment
+    if (this != &p) {
+        //copy non-dynamic variables
+        size = p.size;
+        //create and copy dynamic variables
+        if (p.data == nullptr) { data = nullptr; }
+        else {
+            data = new T[size];
+            for (int i = 0; i < size; i++) {
+                data[i] = p.data[i];
+            };
+        }//else
+
+    }//of cheking for self-assignement
+
+}//copy constructor
+
+template<typename T>
 CMyClass<T>::CMyClass(CMyClass<T>&& p) {
     std::cout << "move constructor called" << std::endl;
     //first check for self-assignment
@@ -105,27 +114,13 @@ CMyClass<T>::CMyClass(CMyClass<T>&& p) {
 
 }
 
-template<typename T> 
-CMyClass<T>::CMyClass ( const CMyClass<T>& p ) {
-    std::cout<<"copy constructor called"<<std::endl;
-//first check for self-assignment
-if (this != &p) { 
-//copy non-dynamic variables
-	size=p.size;
-//create and copy dynamic variables
-	if(p.data==nullptr){data=nullptr;}
-	else{
-		data = new T[size];
-		for(int i=0;i<size;i++){
-			data[i]=p.data[i];
-        };
-	}//else
-	
-}//of cheking for self-assignement
-    
-}//copy constructor
-
-
+template<typename T>
+void CMyClass<T>::print() {
+    for (int i = 0; i < size; i++) {
+        std::cout << data[i] << " ";
+    }
+    std::cout << std::endl;
+}
 
 
 

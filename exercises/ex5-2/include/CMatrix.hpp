@@ -2,23 +2,22 @@
 #include <iostream>
 #include <memory>
 #include <array>
-
 #include <fstream>
 
 template <typename T>
 class CMatrix {
 public:
-    int size;
-   
+    //int size;
+    size_t size;
     //T* data;
     std::unique_ptr<T[]> data;
-    CMatrix(const int& size);
-  
+    CMatrix(const int& size); 
     //~CMatrix();
     CMatrix() {};
-    CMatrix& operator=(const CMatrix& p);
-    CMatrix& operator=(CMatrix&& p);
-    CMatrix(CMatrix&& p);
+    CMatrix& operator=(const CMatrix& p); //assignment operator
+    CMatrix& operator=(CMatrix&& p);    //move assignment
+    CMatrix(const CMatrix& p); //copy constructor
+    CMatrix(CMatrix&& p); //move constructor
     void print_to_file(const std::string& file);
     void read_from_file(const std::string& file);
     CMatrix<T> operator*(const CMatrix<T>& B);
@@ -27,12 +26,13 @@ public:
 
 template<typename T>
 CMatrix<T>::CMatrix(const int& s) {
+    
     //data = new T[s * s];
-    data = std::make_unique<int[]>(s * s);
-    size = s;
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; ++j) {
-            data[i * size + j] = i;
+    data = std::make_unique<int[]>(s*s);
+    size = s ;
+    for (int i = 0; i < s; i++) {
+        for (int j = 0; j < s; ++j) {
+            data[i * s + j] = i;
         }
     }
    // std::cout << "constructor called" << std::endl;
@@ -45,11 +45,9 @@ CMatrix<T>& CMatrix<T>::operator=(const CMatrix<T>& p) {
     if (this != &p) {
         //copy non-dynamic variables
         size = p.size;
-        data.reset(new T[size*size]);
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; ++j) {
-                data[i * size + j] = i;
-            }
+        data.reset(new T[size * size]);
+        for (int i = 0; i < size * size; i++) {
+            data[i] = p.data[i];
         }
     }//of cheking for self-assignement
     return *this;
@@ -69,6 +67,23 @@ CMatrix<T>& CMatrix<T>::operator=(CMatrix<T>&& p) {
 };
 
 template<typename T>
+CMatrix<T>::CMatrix(const CMatrix<T>& p) {
+    std::cout << "copy constructor called" << std::endl;
+    //first check for self-assignment
+    if (this != &p) {
+        //copy non-dynamic variables
+        size = p.size;
+        //create and copy dynamic variables
+        data.reset(new T[size *  size]);
+        for (int i = 0; i < size * size; i++) {
+            data[i] = p.data[i];
+        }
+
+    }//of cheking for self-assignement
+
+}//copy constructor
+
+template<typename T>
 CMatrix<T>::CMatrix(CMatrix<T>&& p) {
     std::cout << "move constructor called" << std::endl;
     //first check for self-assignment
@@ -82,24 +97,20 @@ CMatrix<T>::CMatrix(CMatrix<T>&& p) {
 
 }
 
-/*
-template<typename T>
-CMatrix<T>::~CMatrix() {
-    delete[] data;
-    data = nullptr;
-  
-}
-*/
 template <typename T>
 void CMatrix<T>::read_from_file(const std::string& file) {
+    
     std::ifstream filevar(file);
     if (filevar) {
         filevar >> size;
+        
         //data.resize(size * size);
         //data = new T[size * size];
-        data = std::make_unique<int[]>(size*size);
+        data = std::make_unique<int[]>(size * size);
         for (int i = 0; i < size; ++i) {
+           
             for (int j = 0; j < size; ++j) {
+               
                 filevar >> data[i * size + j];
             }
         }
