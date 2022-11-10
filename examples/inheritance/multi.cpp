@@ -55,6 +55,9 @@ int main () {
   //rect.height=10; //won't work with "protected" member
   rect.set_colour(10,233,30);
   rect.print_colour();
+  trgl.print_colour();
+  trgl.set_colour(10, 3, 50);
+  trgl.print_colour();
   std::cout << rect.area() << std::endl;
   std::cout << trgl.area() << std::endl;
   return 0;
